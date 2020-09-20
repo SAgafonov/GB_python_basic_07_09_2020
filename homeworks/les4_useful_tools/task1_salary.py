@@ -5,16 +5,6 @@
 """
 import sys
 
-try:
-    _, manufacture, rate, bonus = sys.argv
-    manufacture, rate, bonus = float(manufacture), float(rate), float(bonus)
-except ValueError as e:
-    if str(e)[:-20] == "not enough values to unpack" or str(e)[:-13] == "too many values to unpack":
-        print("Provide exactly 3 arguments in the following order: manufacture, rate, bonus")
-    else:
-        print("Arguments should be numbers!")
-    exit(0)
-
 
 def salary_count(user_manufacture: float, user_rate: float, user_bonus: float) -> float:
     """
@@ -25,6 +15,17 @@ def salary_count(user_manufacture: float, user_rate: float, user_bonus: float) -
     :return:
     """
     return (user_manufacture * user_rate) + user_bonus
+
+
+try:
+    _, manufacture, rate, bonus = sys.argv
+    manufacture, rate, bonus = float(manufacture), float(rate), float(bonus)
+except ValueError as e:
+    if str(e)[:-20] == "not enough values to unpack" or str(e)[:-13] == "too many values to unpack":
+        print("Provide exactly 3 arguments in the following order: manufacture, rate, bonus")
+    else:
+        print("Arguments should be numbers!")
+    exit(0)
 
 
 if __name__ == "__main__":
