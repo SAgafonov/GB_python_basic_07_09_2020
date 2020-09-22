@@ -19,9 +19,9 @@ def salary_count(user_manufacture: float, user_rate: float, user_bonus: float) -
 
 try:
     _, manufacture, rate, bonus = sys.argv
-    manufacture, rate, bonus = float(manufacture), float(rate), float(bonus)
+    manufacture, rate, bonus = map(float, sys.argv[1:])
 except ValueError as e:
-    if str(e)[:-20] == "not enough values to unpack" or str(e)[:-13] == "too many values to unpack":
+    if len(sys.argv) != 3:
         print("Provide exactly 3 arguments in the following order: manufacture, rate, bonus")
     else:
         print("Arguments should be numbers!")
@@ -29,5 +29,5 @@ except ValueError as e:
 
 
 if __name__ == "__main__":
-    print(f"Your salary, assuming manufacture:{manufacture} hours, rate:{rate} hours, bonus:{bonus} rubles is:",
+    print(f"Your salary, assuming manufacture: {manufacture} hours, rate: {rate} hours, bonus: {bonus} rubles is:",
           salary_count(manufacture, rate, bonus))
