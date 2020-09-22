@@ -21,7 +21,7 @@ try:
     _, manufacture, rate, bonus = sys.argv
     manufacture, rate, bonus = map(float, sys.argv[1:])
 except ValueError as e:
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         print("Provide exactly 3 arguments in the following order: manufacture, rate, bonus")
     else:
         print("Arguments should be numbers!")
