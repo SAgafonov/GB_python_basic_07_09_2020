@@ -24,14 +24,14 @@ def read_from_file() -> list:
     return content
 
 
-def salary_less_twenty(list_of_users: list) -> list:
+def salary_less_twenty(list_of_users: list) -> str:
     """
     Return users with salary less than 20k
     :param list_of_users: list
-    :return: list
+    :return: str
     """
     try:
-        return [item.split()[0].strip(":") for item in list_of_users if float(item.split()[1]) < 20000]
+        return ', '.join([item.split()[0].strip(":") for item in list_of_users if float(item.split()[1]) < 20000])
     except ValueError as e:
         print(f"Check if {file_name} has correct format: <name>: <salary> <currency>")
         print(e)
