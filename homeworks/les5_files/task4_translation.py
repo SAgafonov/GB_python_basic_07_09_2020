@@ -27,8 +27,9 @@ def translation():
         with open(path_to_input_file, "r", encoding="UTF-8") as in_file, \
                 open(path_to_output_file, "w", encoding="UTF-8") as out_file:
             for line in in_file:
+                line = line.capitalize()
                 for key in for_translation.keys():
-                    if key.lower() in line.lower():
+                    if key in line:
                         k = key
                     translated_line = line.replace(k, for_translation[k])
                 out_file.write(translated_line)
