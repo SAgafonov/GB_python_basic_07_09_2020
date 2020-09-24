@@ -18,7 +18,7 @@ def user_data_into_file():
             while True:
                 user_data = input("Enter some data: ")
                 file.write(user_data + "\n")
-                if user_data == "":
+                if not user_data:
                     break
     except IOError as e:
         print(f"Smth went wrong. Check paths to file and try again")
