@@ -14,14 +14,34 @@ import abc
 
 
 class MyClothes(abc.ABC):
+    @property
     @abc.abstractmethod
     def fabric_consumption(self):
         pass
 
+    @abc.abstractmethod
+    def general_fabric_consumption(self):
+        pass
+
 
 class Clothes(MyClothes):
-    def __init__(self, clothes_type: str):
-        self.clothes_type = clothes_type
+    def __init__(self, clothes_type: str, size: float):
+        self.__clothes_type = clothes_type
+        self.__size = size
+
+    @property
+    def fabric_consumption(self):
+        """
+        Count expense of fabric for a clothes depends on its type.
+        :return: float
+        """
+        if self.__clothes_type.lower() == "suit":
+            return round((self.__size * 2 + 0.3), 3)
+        elif self.__clothes_type.lower() == "coat":
+            return round((self.__size / 6.5 + 0.5), 3)
+        else:
+            print("Unknown type of clothes")
+            exit(0)
 
     @staticmethod
     def general_fabric_consumption(*args: float) -> float:
@@ -32,38 +52,19 @@ class Clothes(MyClothes):
         """
         return sum(args)
 
-    def fabric_consumption(self):
-        pass
-
 
 class Coat(Clothes):
     def __init__(self, size: float):
-        self.name = "Coat"
+        self._name = "Coat"
         self.size = size
-        super().__init__(self.name)
-
-    @property
-    def fabric_consumption(self) -> float:
-        """
-        Count expense of fabric for a coat.
-        :return: float
-        """
-        return round((self.size / 6.5 + 0.5), 3)
+        super().__init__(self._name, self.size)
 
 
 class Suit(Clothes):
     def __init__(self, size: float):
-        self.name = "Suit"
+        self._name = "Suit"
         self.size = size
-        super().__init__(self.name)
-
-    @property
-    def fabric_consumption(self) -> float:
-        """
-        Count expense of fabric for a suit.
-        :return: float
-        """
-        return round((self.size * 2 + 0.3), 3)
+        super().__init__(self._name, self.size)
 
 
 if __name__ == '__main__':
@@ -71,7 +72,7 @@ if __name__ == '__main__':
     suit_size = 3.8
     coat = Coat(coat_size)
     suit = Suit(suit_size)
-    print(f"For a coat with {coat_size} 5.4 you need:", coat.fabric_consumption)
-    print(f"For a suit with {suit_size} 3.8 you need:", suit.fabric_consumption)
+    print(f"For a coat with size {coat_size} you need:", coat.fabric_consumption)
+    print(f"For a suit with size {suit_size} you need:", suit.fabric_consumption)
     print("General expense of fabric for a coat and a suit:",
           Clothes.general_fabric_consumption(coat.fabric_consumption, suit.fabric_consumption))

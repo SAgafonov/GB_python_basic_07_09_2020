@@ -83,6 +83,6 @@ class Cell:
 
 if __name__ == '__main__':
     c = Cell(3)
-    c2 = Cell(12)
+    c2 = Cell(16)
     print(c2.make_order(5))
     print(c + c2)
